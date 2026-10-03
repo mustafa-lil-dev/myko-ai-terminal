@@ -126,13 +126,16 @@ async fn open_settings_window(app: tauri::AppHandle, tab: Option<String>) -> Res
     #[cfg(any(target_os = "linux", target_os = "windows"))]
     let builder = builder.decorations(false).transparent(true);
 
+    #[cfg(target_os = "macos")]
     let window = builder.build().map_err(|e| e.to_string())?;
+    #[cfg(not(target_os = "macos"))]
+    let _ = builder.build().map_err(|e| e.to_string())?;
 
     // Some Linux compositors (GNOME/Mutter with CSD-by-default) ignore the
     // builder-time decorations flag — re-assert it after realize.
     #[cfg(target_os = "linux")]
     {
-        let _ = window.set_decorations(false);
+        let _ = app.get_webview_window("settings").map(|w| w.set_decorations(false));
     }
 
     #[cfg(target_os = "macos")]
