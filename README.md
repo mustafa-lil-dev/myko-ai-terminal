@@ -1,284 +1,667 @@
 <div align="center">
-  <img src="public/logo.png" width="144" height="144" alt="Myko" />
-  <h1>Myko</h1>
-  <p><strong>Private terminal-first AI development workspace.</strong></p>
-  <p>
-    <img src="https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey" alt="Supported platforms" />
-    <img src="https://img.shields.io/badge/status-private%20product-blue" alt="Private product" />
-  </p>
+
+<img src="myko-icon.png" alt="Myko" width="120">
+
+# Myko
+
+### The AI-native developer workspace.
+
+**Terminal. Editor. Git. AI. Preview. One desktop workspace.**
+
+Build, debug, review, and ship software without constantly switching between tools.
+
+<br>
+
+[![Website](https://img.shields.io/badge/Website-Myko-111111?style=for-the-badge)](https://myko-beta.vercel.app/)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-111111?style=for-the-badge\&logo=github)](https://github.com/mustafa-lil-dev/myko-ai-terminal)
+[![License](https://img.shields.io/badge/License-GPL--3.0-111111?style=for-the-badge)](LICENSE)
+
 </div>
 
 ---
 
-Myko is a desktop development workspace built with Tauri 2, Rust, and React. It brings a native terminal, code editor, file explorer, Git tools, web preview, themes, and an AI workspace together in one application.
+## What is Myko?
 
-Myko is distributed as a private product. It does not require an account and does not include application telemetry. AI requests use the provider or local model endpoint configured by the user.
+Myko is a desktop development workspace built with **Tauri 2, Rust, React, and TypeScript**.
 
-## Product overview
+Instead of jumping between a terminal, editor, Git client, browser preview, and AI tools, Myko brings the core development workflow into one focused application.
 
-- Native terminal with multiple tabs, splits, background output, and GPU rendering.
-- Code editor with syntax highlighting, Vim mode, themes, AI completion, and AI-assisted edits.
-- File explorer with search, keyboard navigation, rename and context actions.
-- Git source control with staging, commits, branches, push, search, and a visual history graph.
-- Local web preview for development servers and external URLs.
-- Agentic AI workspace with tools, plans, sub-agents, project memory, custom agents, and approval gates.
-- Customizable application themes, editor themes, background images, opacity, and blur.
-- Windows local and WSL workspace environments.
+```text
+┌───────────────────────────────────────────────────────────────┐
+│                           MYKO                                │
+├──────────────┬──────────────────────────────┬───────────────┤
+│              │                              │               │
+│ File         │       Code Editor            │   AI          │
+│ Explorer     │                              │   Workspace   │
+│              │                              │               │
+├──────────────┴──────────────────────────────┴───────────────┤
+│                     Native Terminal                          │
+├───────────────────────────────────────────────────────────────┤
+│ Git • Preview • Processes • Tools                            │
+└───────────────────────────────────────────────────────────────┘
+```
 
-## Features
+Myko is designed around an **AI-first development workflow**, while keeping the traditional tools developers already rely on close at hand.
 
-### Terminal
+---
 
-- xterm.js terminal with WebGL rendering.
-- Multiple terminal tabs with background streaming.
-- GPU-accelerated block terminal with editor-like command input.
-- Native PTY backend powered by `portable-pty`.
-- Shell support for PowerShell, PowerShell 7 (`pwsh`), Command Prompt, Bash, Zsh, and Fish where installed.
-- Horizontal and vertical split panels.
-- Inline search, link detection, true-color output, and terminal serialization.
-- Windows workspace environments for the local machine and installed WSL distributions.
-- Process and background-session management.
+# Screenshots
 
-### Code editor
+Myko is designed to keep the entire development workflow inside one workspace.
 
-- CodeMirror 6 editor.
-- Language support for TypeScript, JavaScript, JSX, TSX, Rust, Python, Go, C, C++, Java, PHP, HTML, CSS, JSON, Markdown, Vue, and other common formats.
-- Syntax highlighting and diagnostics.
-- Multiple editor tabs and unsaved-change protection.
-- Vim mode.
-- Inline AI autocomplete, including local model support.
-- AI edit diffs with hunk-by-hunk accept and reject controls.
-- Built-in editor themes:
-  - Atom One
-  - Aura
-  - Copilot
-  - GitHub Dark and Light
-  - Gruvbox Dark
-  - Nord
-  - Tokyo Night
-  - Xcode Dark and Light
+## AI-native workflow
 
-### File explorer
+<table>
+<tr>
+<td width="50%" valign="top">
 
-- Directory tree browsing.
-- Catppuccin file icons.
-- Fuzzy file search.
-- Keyboard navigation.
-- Inline rename.
-- File and directory context actions.
-- File attachments for AI prompts.
-- Selection attachments from the editor and terminal.
-- File watching so workspace changes can be reflected in the UI.
+### AI Workflow
 
-### Source control
+<img src="docs/ai-workflow.png" alt="Myko AI Workflow" width="100%">
 
-- Repository and branch status.
-- Stage and unstage files or hunks.
-- Commit changes with `Ctrl+Enter` on Windows/Linux or `Cmd+Enter` on macOS.
-- Push with upstream awareness.
-- Detached `HEAD` display.
-- Git history with a real commit graph, including merge lanes.
-- Commit search and filtering.
-- Open commits on the configured remote.
-- Git command and error handling through the native backend.
+Plan, build, review, and iterate with AI directly inside your development workspace.
 
-### Web preview
+</td>
 
-- Detect local development servers.
-- Open local servers in a preview tab.
-- Preview external URLs.
-- Native child webview support for external pages.
-- Adjustable preview layout alongside the workspace.
+<td width="50%" valign="top">
 
-### Themes and customization
+### Code Editor
 
-- Built-in application theme presets.
-- Custom application themes.
-- Import and export custom themes.
-- Background images.
-- Adjustable background opacity and blur.
-- Independent application and editor themes.
-- Customizable keyboard shortcuts.
-- Window and panel layout persistence.
+<img src="docs/editor.png" alt="Myko Code Editor" width="100%">
 
-### AI workspace
+A focused CodeMirror-powered editor with syntax highlighting, diagnostics, Vim mode, AI completion, and AI-assisted edits.
 
-Myko supports both cloud providers and local model servers. Provider availability depends on the provider configuration and credentials.
+</td>
+</tr>
+</table>
 
-Supported provider integrations include:
+## Developer workspace
 
-- OpenAI
-- Anthropic
-- Google Gemini
-- Groq
-- xAI
-- Cerebras
-- OpenRouter
-- DeepSeek
-- Mistral
-- OpenAI-compatible endpoints
-- LM Studio
-- MLX
-- Ollama
+<table>
+<tr>
+<td width="50%" valign="top">
 
-AI workspace capabilities include:
+### Native Terminal
 
-- Composer input with file references using `@path`.
-- Reusable prompt snippets using `#handle`.
-- Slash commands.
-- Voice input where supported by the host system.
-- File, editor-selection, and terminal-selection attachments.
-- Project instructions and memory through `MYKO.md`.
-- Plan mode for multi-step work.
-- Todo tracking for agent tasks.
-- Custom agents with their own instructions and tool subsets.
-- Sub-agent execution.
-- Read-file, write-file, edit-file, multi-edit, grep, and glob tools.
-- Terminal command proposals with approval gating.
-- Background processes.
-- Streaming responses, reasoning display, tool status, and notifications.
-- AI-generated edit diffs that can be reviewed before applying changes.
+<img src="docs/terminal.png" alt="Myko Terminal" width="100%">
 
-### Security and privacy
+A native PTY terminal with tabs, splits, background processes, WebGL rendering, and multiple shell environments.
 
-- API keys are stored through the operating system keychain.
-- API keys are not stored in `localStorage`.
-- Shell commands that can change the workspace require approval where configured.
-- AI tools expose only the capabilities selected by the agent configuration.
-- No application account is required.
-- No application telemetry is included.
-- Network traffic is sent only to the configured AI provider, local model server, updater, or requested preview/resource endpoint.
+</td>
 
-## Installation
+<td width="50%" valign="top">
 
-Installers are produced by the Tauri release build. On Windows, use the NSIS `.exe` installer for the simplest installation experience. An MSI package is also generated when enabled by the build configuration.
+### Source Control
+
+<img src="docs/source-control.png" alt="Myko Source Control" width="100%">
+
+Stage, commit, push, search history, and explore Git history through a visual commit graph.
+
+</td>
+</tr>
+</table>
+
+## Make it yours
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+### Themes
+
+<img src="docs/themes.png" alt="Myko Themes" width="100%">
+
+Customize the workspace with application themes, editor themes, backgrounds, opacity, blur, and keyboard shortcuts.
+
+</td>
+
+<td width="50%" valign="top">
+
+### Web Preview
+
+<img src="docs/web-preview.png" alt="Myko Web Preview" width="100%">
+
+Detect local development servers and preview web applications directly inside Myko.
+
+</td>
+</tr>
+</table>
+
+---
+
+# Why Myko?
+
+Modern development often looks like this:
+
+```text
+Terminal
+   ↓
+Code Editor
+   ↓
+Git Client
+   ↓
+Browser
+   ↓
+AI Assistant
+   ↓
+Debugger
+   ↓
+Database Tool
+   ↓
+Back to Editor
+```
+
+Myko brings the workflow closer together:
+
+```text
+                    ┌───────────────┐
+                    │      AI       │
+                    └───────┬───────┘
+                            │
+┌────────────┐      ┌───────▼───────┐      ┌─────────────┐
+│   Files    │──────│     MYKO      │──────│     Git     │
+└────────────┘      │               │      └─────────────┘
+                    │  Development  │
+┌────────────┐      │   Workspace   │      ┌─────────────┐
+│  Terminal  │──────│               │──────│ Web Preview │
+└────────────┘      └───────┬───────┘      └─────────────┘
+                            │
+                    ┌───────▼───────┐
+                    │    Editor     │
+                    └───────────────┘
+```
+
+---
+
+# Features
+
+## ⚡ Native Terminal
+
+Myko includes a native terminal powered by a real PTY backend.
+
+* xterm.js rendering
+* WebGL rendering
+* Native PTY powered by `portable-pty`
+* Multiple terminal tabs
+* Horizontal and vertical splits
+* Background processes
+* Background output streaming
+* Inline terminal search
+* Link detection
+* True-color output
+* Terminal serialization
+* Process management
+* PowerShell
+* PowerShell 7 / `pwsh`
+* Command Prompt
+* Bash
+* Zsh
+* Fish
+* Windows local environment
+* WSL environments
+
+The terminal is not a simulated command console. It connects to the native operating-system environment.
+
+---
+
+# ✦ AI Workspace
+
+Myko is built around an AI-native development workflow.
+
+AI can work alongside your project rather than existing as a separate chat window.
+
+### AI capabilities
+
+* Composer
+* File references with `@path`
+* Reusable prompt snippets with `#handle`
+* Slash commands
+* Voice input where supported
+* File attachments
+* Editor-selection attachments
+* Terminal-selection attachments
+* `MYKO.md` project instructions and memory
+* Plan mode
+* Todo tracking
+* Custom agents
+* Sub-agents
+* File reading
+* File writing
+* File editing
+* Multi-file editing
+* Grep
+* Glob
+* Terminal tool integration
+* Command approval
+* Background processes
+* Streaming responses
+* Reasoning display
+* Tool status
+* Notifications
+* AI-generated edit diffs
+* Reviewable changes before applying them
+
+### Bring your own AI
+
+Myko supports multiple cloud and local AI providers.
+
+**Cloud providers**
+
+* OpenAI
+* Anthropic
+* Google Gemini
+* Groq
+* xAI
+* Cerebras
+* OpenRouter
+* DeepSeek
+* Mistral
+* OpenAI-compatible endpoints
+
+**Local AI**
+
+* LM Studio
+* MLX
+* Ollama
+
+You choose the provider, endpoint, and model.
+
+---
+
+# 🧠 AI-assisted editing
+
+AI-generated code changes can be reviewed before they are applied.
+
+Instead of blindly replacing files, Myko can present changes as editable diffs.
+
+```text
+AI
+ │
+ ├── Understand project
+ │
+ ├── Plan changes
+ │
+ ├── Generate edits
+ │
+ ▼
+Review Diff
+ │
+ ├── Accept
+ ├── Reject
+ └── Continue editing
+```
+
+This keeps the developer in control of changes.
+
+---
+
+# 💻 Code Editor
+
+Myko includes a CodeMirror 6 editor.
+
+### Editor features
+
+* CodeMirror 6
+* Multiple editor tabs
+* Syntax highlighting
+* Diagnostics
+* Vim mode
+* AI autocomplete
+* AI-assisted edits
+* Edit diffs
+* Unsaved-change protection
+* Multiple programming languages
+* Independent editor themes
+
+Supported languages include:
+
+* TypeScript
+* JavaScript
+* JSX
+* TSX
+* Rust
+* Python
+* Go
+* C
+* C++
+* Java
+* PHP
+* HTML
+* CSS
+* JSON
+* Markdown
+* Vue
+* And other common formats
+
+---
+
+# 📁 File Explorer
+
+Navigate your project without leaving Myko.
+
+* Directory tree
+* Fuzzy file search
+* Keyboard navigation
+* Inline rename
+* File context actions
+* Directory context actions
+* Catppuccin file icons
+* File attachments for AI
+* Editor-selection attachments
+* Terminal-selection attachments
+* File watching
+* Workspace-aware file changes
+
+---
+
+# Git & Source Control
+
+Git is integrated directly into the development workspace.
+
+### Git features
+
+* Repository status
+* Branch status
+* Stage files
+* Unstage files
+* Stage individual hunks
+* Unstage individual hunks
+* Commit changes
+* Push changes
+* Upstream awareness
+* Detached HEAD display
+* Commit search
+* Commit filtering
+* Visual commit graph
+* Merge lanes
+* Open commits on the configured remote
+* Native Git command handling
+* Git error handling
+
+Commit shortcuts:
+
+```text
+Windows / Linux
+Ctrl + Enter
+
+macOS
+Cmd + Enter
+```
+
+---
+
+# 🌐 Web Preview
+
+Myko can detect local development servers and preview applications without forcing you to constantly switch to another window.
+
+### Web preview features
+
+* Local development server detection
+* Local server preview
+* External URL preview
+* Native child webview support
+* Adjustable preview layout
+* Development workflow integration
+
+Run your application and preview it from the same workspace.
+
+---
+
+# 🎨 Themes & Customization
+
+Your development environment should feel like yours.
+
+Myko supports:
+
+* Built-in application themes
+* Custom application themes
+* Import/export custom themes
+* Background images
+* Adjustable background opacity
+* Blur effects
+* Independent editor themes
+* Custom keyboard shortcuts
+* Persistent window layout
+* Persistent panel layout
+
+---
+
+# 🔐 Privacy & Security
+
+Myko is designed to keep control in the developer's hands.
+
+### API keys
+
+Provider credentials are stored through the operating system's secure keychain.
+
+They are **not stored in `localStorage`** and are not written into project files.
+
+### AI permissions
+
+AI tools can be configured with specific capabilities.
+
+Potentially destructive operations such as shell commands can require approval depending on configuration.
+
+### No required Myko account
+
+Myko does not require users to create an application account.
+
+### No application telemetry
+
+Myko does not include application telemetry.
+
+AI requests go to the provider or local endpoint configured by the user.
+
+---
+
+# 🖥️ Cross-platform
+
+Myko is designed as a desktop application using Tauri 2.
 
 ### Windows
 
-1. Run the Myko installer.
-2. If Windows SmartScreen shows a warning for an unsigned build, select **More info** and then **Run anyway**.
-3. Start Myko from the Start menu or installed shortcut.
-
-The default Windows shell detection order is:
-
-1. `pwsh.exe`
-2. `powershell.exe`
-3. `cmd.exe`
-
-WSL distributions are available as workspace environments when installed on the machine.
+Supported with native Windows development environments and WSL.
 
 ### Linux
 
-Available package formats depend on the build target:
+Build targets can produce:
 
-- AppImage
-- `.deb`
-- `.rpm`
+* AppImage
+* `.deb`
+* `.rpm`
 
-AppImage may require FUSE. If FUSE is unavailable, run:
+### macOS
+
+Builds can target supported macOS architectures.
+
+---
+
+# 🚀 Installation
+
+Installers are produced through the Tauri release build system.
+
+## Windows
+
+Run the Myko installer and launch the application.
+
+If Windows SmartScreen displays a warning for an unsigned development build:
+
+1. Select **More info**
+2. Select **Run anyway**
+
+WSL distributions can be used as workspace environments when installed.
+
+---
+
+## Linux
+
+Depending on the build target, Myko can be distributed as:
+
+```text
+AppImage
+.deb
+.rpm
+```
+
+For AppImage systems without FUSE support:
 
 ```bash
 ./Myko_*.AppImage --appimage-extract-and-run
 ```
 
-On Wayland systems with rendering issues, try:
+For some Wayland rendering issues:
 
 ```bash
 WEBKIT_DISABLE_DMABUF_RENDERER=1 ./Myko_*.AppImage
 ```
 
-### macOS
+---
 
-Use the generated macOS application bundle or disk image for the target architecture. macOS builds require macOS 13 or newer.
+## macOS
 
-## Configure AI
+Use the generated macOS application bundle or disk image for the target architecture.
 
-1. Open **Settings → AI**.
-2. Select a provider.
-3. Enter the provider API key or local endpoint.
-4. Select a model.
-5. Save the configuration and open the AI workspace.
+Myko's current build configuration targets macOS 13 or newer.
 
-For local inference, start LM Studio, MLX, or Ollama first and enter its compatible endpoint in Myko. Provider keys are stored in the operating system keychain and are not written to project files or browser storage.
+---
 
-## Development
+# 🤖 Configure AI
 
-### Prerequisites
+After installing Myko:
 
-- Node.js 24 or newer.
-- pnpm 10 or newer.
-- Rust stable toolchain.
-- Tauri 2 platform prerequisites.
-- WebView2 on Windows.
-- Git for source-control features.
+1. Open **Settings → AI**
+2. Select your provider
+3. Enter your API key or local endpoint
+4. Select a model
+5. Save the configuration
+6. Open the AI workspace
 
-### Install dependencies
+For local AI, start your local provider first.
+
+Supported local environments include:
+
+```text
+LM Studio
+MLX
+Ollama
+```
+
+---
+
+# 🛠️ Build From Source
+
+## Requirements
+
+You will need:
+
+* Node.js 24+
+* pnpm 10+
+* Rust stable
+* Tauri 2 prerequisites
+* WebView2 on Windows
+* Git
+
+## Clone
+
+```bash
+git clone https://github.com/mustafa-lil-dev/myko-ai-terminal.git
+cd myko-ai-terminal
+```
+
+## Install dependencies
 
 ```bash
 pnpm install
 ```
 
-### Start the web development server
+## Start the frontend
 
 ```bash
 pnpm dev
 ```
 
-This starts Vite at `http://localhost:1420`. It is useful for frontend work, but native Tauri APIs and plugins require the Tauri development command.
+The Vite development server runs at:
 
-### Start the native desktop app
+```text
+http://localhost:1420
+```
+
+For native Tauri functionality, use:
 
 ```bash
 pnpm tauri dev
 ```
 
-### Build the frontend
+---
+
+# 📦 Build Myko
+
+Build the frontend:
 
 ```bash
 pnpm build
 ```
 
-### Create installable packages
+Build the desktop application:
 
 ```bash
 pnpm tauri build
 ```
 
-On Windows, generated installers are placed under:
-
-```text
-src-tauri\target\release\bundle\
-```
-
-Typical outputs include:
-
-```text
-src-tauri\target\release\bundle\nsis\Myko_0.8.5_x64-setup.exe
-src-tauri\target\release\bundle\msi\Myko_0.8.5_x64_en-US.msi
-```
-
-To create only an NSIS installer:
+### Windows NSIS installer
 
 ```bash
 pnpm tauri build --bundles nsis
 ```
 
-To create only an MSI installer:
+### Windows MSI installer
 
 ```bash
 pnpm tauri build --bundles msi
 ```
 
-### Quality checks
+Build output is generated under:
+
+```text
+src-tauri/target/release/bundle/
+```
+
+Typical Windows outputs include:
+
+```text
+src-tauri/target/release/bundle/nsis/Myko_0.8.5_x64-setup.exe
+src-tauri/target/release/bundle/msi/Myko_0.8.5_x64_en-US.msi
+```
+
+---
+
+# 🧪 Development & Quality Checks
+
+Run type checking:
 
 ```bash
 pnpm check-types
+```
+
+Check formatting:
+
+```bash
 pnpm format:check
+```
+
+Run linting:
+
+```bash
 pnpm lint
+```
+
+Run tests:
+
+```bash
 pnpm test
 ```
 
-Useful additional commands:
+Other useful commands:
 
 ```bash
 pnpm format
@@ -291,7 +674,7 @@ pnpm size
 pnpm knip
 ```
 
-Rust checks and tests run from the Tauri directory:
+Rust checks:
 
 ```bash
 cd src-tauri
@@ -299,28 +682,177 @@ cargo check
 cargo test
 ```
 
-## Architecture
+---
 
-Myko uses a two-process desktop architecture:
+# 🏗️ Architecture
 
-- React and TypeScript provide the application interface.
-- Vite bundles the frontend.
-- Tauri provides the desktop shell and secure IPC.
-- Rust handles PTY sessions, filesystem operations, Git, processes, networking, secrets, SSH, LSP support, workspace management, and agent-related native operations.
-- CodeMirror provides the editor.
-- xterm.js provides terminal rendering.
-- Zustand provides client state management.
-- The Vercel AI SDK provides streaming AI integrations.
-- Tailwind CSS and Radix-based UI components provide the interface system.
+Myko uses a desktop architecture built around a web-based interface and native Rust capabilities.
 
-Project documentation is kept in the `docs/` directory, including architecture notes for the AI subsystem, PTY integration, terminal renderer pool, security model, and process model.
+```text
+┌──────────────────────────────────────┐
+│            React + TypeScript        │
+│                                      │
+│ UI • Editor • AI • Workspace • Git   │
+└──────────────────┬───────────────────┘
+                   │
+                   │ Tauri IPC
+                   ▼
+┌──────────────────────────────────────┐
+│                Rust                  │
+│                                      │
+│ PTY • Filesystem • Git • Processes   │
+│ Networking • Secrets • SSH • LSP     │
+│ Workspace • Native Agent Operations  │
+└──────────────────────────────────────┘
+```
 
-## Project information
+### Main technologies
 
-- Product: Myko
-- Version: `0.8.5`
-- Desktop framework: Tauri 2
-- Frontend: React 19 and TypeScript
-- Native backend: Rust
-- Package manager: pnpm
-- License and distribution: private
+| Layer             | Technology             |
+| ----------------- | ---------------------- |
+| Desktop framework | Tauri 2                |
+| Frontend          | React 19               |
+| Language          | TypeScript             |
+| Native backend    | Rust                   |
+| Build tool        | Vite                   |
+| Package manager   | pnpm                   |
+| Editor            | CodeMirror 6           |
+| Terminal          | xterm.js               |
+| State             | Zustand                |
+| AI                | Vercel AI SDK          |
+| Styling           | Tailwind CSS           |
+| UI                | Radix-based components |
+
+---
+
+# 📂 Project Structure
+
+```text
+myko-ai-terminal/
+├── .github/
+├── docs/
+├── public/
+├── scripts/
+├── src/
+│   ├── ...
+├── src-tauri/
+│   ├── ...
+├── LICENSE
+├── README.md
+├── SECURITY.md
+├── CONTRIBUTING.md
+├── package.json
+├── pnpm-lock.yaml
+├── tsconfig.json
+├── vite.config.ts
+└── myko-icon.png
+```
+
+Documentation and architecture notes are kept inside the `docs/` directory.
+
+---
+
+# 📸 Documentation Screenshots
+
+Current product screenshots are stored in:
+
+```text
+docs/
+├── ai-workflow.png
+├── editor.png
+├── source-control.png
+├── terminal.png
+├── themes.png
+└── web-preview.png
+```
+
+These screenshots are also used as part of Myko's product documentation and presentation.
+
+---
+
+# 🗺️ Roadmap
+
+Myko is actively evolving.
+
+Areas of development include:
+
+* More powerful AI workflows
+* Improved agent orchestration
+* Better debugging workflows
+* Deeper development tooling
+* More workspace integrations
+* Improved GitHub workflows
+* Additional database tooling
+* Docker workflows
+* API development workflows
+* SSH workflows
+* Improved project setup and health checks
+* More customization
+* Performance improvements
+* Better cross-platform support
+
+The roadmap may change as Myko develops.
+
+---
+
+# 🤝 Contributing
+
+Contributions, bug reports, ideas, and improvements are welcome.
+
+Before contributing, please read:
+
+* [`CONTRIBUTING.md`](CONTRIBUTING.md)
+* [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md)
+* [`SECURITY.md`](SECURITY.md)
+
+If you find a bug, please provide enough information to reproduce it.
+
+---
+
+# 🔒 Security
+
+If you discover a security vulnerability, please follow the instructions in:
+
+[`SECURITY.md`](SECURITY.md)
+
+Please avoid publicly disclosing sensitive security issues before they can be investigated.
+
+---
+
+# 📄 License
+
+Myko is licensed under the **GNU General Public License v3.0**.
+
+See [`LICENSE`](LICENSE) for the complete license text.
+
+---
+
+# 🔗 Links
+
+**Website**
+
+https://myko-beta.vercel.app/
+
+**GitHub**
+
+https://github.com/mustafa-lil-dev/myko-ai-terminal
+
+**Website Source**
+
+https://github.com/mustafa-lil-dev/myko-ai-website
+
+---
+
+<div align="center">
+
+## Build without leaving your flow.
+
+### Myko
+
+**Your development workspace, built around AI.**
+
+<br>
+
+Made with Rust, React, TypeScript, and a lot of coffee.
+
+</div>
